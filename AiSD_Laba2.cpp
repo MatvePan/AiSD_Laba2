@@ -74,14 +74,39 @@ void Paste(vector<Tovar>& place) { // Функция сортировки вст
 	cout << "Отсортировано\n";
 }
 
-void Shell(vector<Tovar>& place) {
-
+void Shell(vector<Tovar>& place) { // Функция сортировки Шелла
+	for (int i = place.size() / 2; i > 0; i /= 2) {
+		for (int j = i; j < place.size(); j++) {
+			int temp = place[j].code;
+			int k;
+			for (k = j; k >= i and place[k - i].code > temp; k -= i) {
+				place[k].code = place[k - i].code;
+			}
+			place[k].code = temp;
+		}
+	}
+	cout << "Отсортировано\n";
 }
 
-void Fast(vector<Tovar>& place) {
-	int middle = (place[0].code + place[place.size()-1].code) / 2;
-	cout << "\n";
-	cout << middle;
+int Part(vector<Tovar>& place, int start, int end) { // Функция для быстрой сортировки. Перемещает элементы массива
+	int begin = place[end].code;
+	int i = end - 1;
+	for (int j = start; j <= end - 1; j++) {
+		if (place[j].code <= begin) {
+			i++;
+			swap(place[i], place[j]);
+		}
+	}
+	swap(place[i + 1], place[end]);
+	return i + 1;
+}
+
+void Fast(vector<Tovar>& place, int start, int end) { // Функция быстрой сортировки
+	if (start < end) {
+		int newend = Part(place, start, end);
+		Fast(place, start, newend - 1);
+		Fast(place, newend + 1, end);
+	}
 }
 
 int main() {
@@ -89,6 +114,7 @@ int main() {
 	vector<Tovar> thing;
 	int mode;
 	while (true) {
+		int end = thing.size() - 1;
 		cout << "\n";
 		cout << "1. Ввод данных товара (только на английском)\n";
 		cout << "2. Вывод списка товаров\n";
@@ -116,7 +142,7 @@ int main() {
 			Shell(thing);
 			break;
 		case 6:
-			Fast(thing);
+			Fast(thing, 0, end);
 			break;
 		case 0:
 			return 0;

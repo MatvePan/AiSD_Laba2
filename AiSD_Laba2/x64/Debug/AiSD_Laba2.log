@@ -1,2 +1,4 @@
 ﻿  AiSD_Laba2.cpp
-  AiSD_Laba2.vcxproj -> C:\Users\Matvey\Desktop\АиСД\AiSD_Laba2\AiSD_Laba2\x64\Debug\AiSD_Laba2.exe
+C:\Users\matve\Desktop\AiSD_Laba2-main\AiSD_Laba2.cpp(78,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\matve\Desktop\AiSD_Laba2-main\AiSD_Laba2.cpp(117,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  AiSD_Laba2.vcxproj -> C:\Users\matve\Desktop\AiSD_Laba2-main\x64\Debug\AiSD_Laba2.exe
